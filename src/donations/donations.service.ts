@@ -1,19 +1,39 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
+import { getConstantValue } from '@ts-morph/common/lib/typescript';
 import { PrismaService } from '../../prisma/prisma.service';
-import { CreateDonationInput } from './dto/create-donation.input';
 
 @Injectable()
 export class DonationsService {
   constructor(private prisma: PrismaService) {}
-  create(createDonationInput: CreateDonationInput) {
-    return 'This action adds a new donation';
+
+  create(createDonationInput: Prisma.DonationCreateInput) {
+    return this.prisma.donation.create({
+      data: createDonationInput,
+    });
   }
 
-  findAll() {
-    return this.prisma.donation.findMany();
+  async findAll(orderBy?: { field?: string; direction?: string }) {
+    const { field = 'createdAt', direction = 'desc' } = orderBy || {};
+
+    return this.prisma.donation.findMany({
+      orderBy: { [field]: direction },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} donation`;
+  findOne(donationWhereUniqueInput: Prisma.DonationWhereUniqueInput) {
+    return this.prisma.donation.findUnique({
+      where: donationWhereUniqueInput,
+    });
+  }
+
+  async getTotal() {
+    const response = await this.prisma.donation.aggregate({
+      _sum: {
+        count: true,
+      },
+    });
+
+    return response._sum.count;
   }
 }
