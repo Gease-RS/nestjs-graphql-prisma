@@ -1,25 +1,49 @@
 ## comandos
 
 ```bash
-# development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
+# Instalando Nestjs de forma global
+$ npm install -g @nestjs/cli
 
-# production mode
-$ npm run start:prod
+# Criando projeto
+$ nest new nest-graphql-prisma
 
-# production mode
+# Entre no projeto
+$ cd nest-graphql-prisma
+
+# Instale os pacotes
+$ npm install @nestjs/graphql graphql apollo-server-express
+
+# Gerando resources com generator do Nest
+$ nest g resource donations
+
+# Instale ts-morph
 $ npm install ts-morph
 
-# production mode
-$ npm run gen-typing
+# Este comando gera o arquivo graphql.ts com script inicial
+$ npm run gen-typings
 
-# production mode
+# Instale
 $ npm install --legacy-peer-deps graphql-iso-date
+$ npm install graphql-iso-date
 
-# production mode
+# Iniciando prisma
+$ npx prisma init
+
+# Criando Migrate
+# A flag --name refere que o próximo nome será o migrate criada. Nesse modelo foi dado o nome de init
+$ npx prisma migrate dev --name init
+
+# Seeds inseri no banco dados iniciais
+$ npx prisma db seed
+
+# Generator do prisma
+$ npx prisma generate
+
+# Instale
 $ npm install -D concurrently
+
+# Playgound Apollo Server
+$ localhost:3000/graphql
 
 ```
