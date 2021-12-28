@@ -46,4 +46,10 @@ $ npm install -D concurrently
 # Playgound Apollo Server
 $ localhost:3000/graphql
 
+# Instale
+$ npm install --save-dev prisma-nestjs-graphql
+
+# Instale
+$ npm install --save class-validator class-transformer
+
 ```

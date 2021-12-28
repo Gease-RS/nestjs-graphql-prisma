@@ -1,5 +1,6 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { Prisma } from '@prisma/client';
+import { DonationCreateInput } from 'src/@generated/prisma-nestjs-graphql/donation/donation-create.input';
+import { OrderByParams } from 'src/graphql';
 import { DonationsService } from './donations.service';
 
 @Resolver('Donation')
@@ -9,7 +10,7 @@ export class DonationsResolver {
   @Mutation('createDonation')
   create(
     @Args('createDonationInput')
-    createDonationInput: Prisma.DonationCreateInput,
+    createDonationInput: DonationCreateInput,
   ) {
     return this.donationsService.create(createDonationInput);
   }
@@ -17,10 +18,7 @@ export class DonationsResolver {
   @Query('donations')
   findAll(
     @Args('orderBy')
-    orderBy?: {
-      field?: string;
-      direction?: string;
-    },
+    orderBy?: OrderByParams,
   ) {
     return this.donationsService.findAll(orderBy);
   }
@@ -30,7 +28,7 @@ export class DonationsResolver {
     return this.donationsService.findOne({ id });
   }
 
-  @Query('totalDonation')
+  @Query('totalDonations')
   totalDonations() {
     return this.donationsService.getTotal();
   }

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { getConstantValue } from '@ts-morph/common/lib/typescript';
+import { OrderByParams } from 'src/graphql';
 import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
@@ -13,7 +14,7 @@ export class DonationsService {
     });
   }
 
-  async findAll(orderBy?: { field?: string; direction?: string }) {
+  async findAll(orderBy?: OrderByParams) {
     const { field = 'createdAt', direction = 'desc' } = orderBy || {};
 
     return this.prisma.donation.findMany({
