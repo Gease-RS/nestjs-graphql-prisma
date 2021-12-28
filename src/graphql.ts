@@ -45,5 +45,13 @@ export abstract class IMutation {
     abstract createDonation(createDonationInput: CreateDonationInput): Donation | Promise<Donation>;
 }
 
+export class Result {
+    total: number;
+}
+
+export abstract class ISubscription {
+    abstract totalUpdated(): Nullable<Result> | Promise<Nullable<Result>>;
+}
+
 export type DateTime = any;
 type Nullable<T> = T | null;

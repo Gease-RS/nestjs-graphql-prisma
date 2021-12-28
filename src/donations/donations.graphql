@@ -35,3 +35,11 @@ type Query {
 type Mutation {
   createDonation(createDonationInput: CreateDonationInput!): Donation!
 }
+
+type Result {
+  total: Int!
+}
+
+type Subscription {
+  totalUpdated: Result
+}

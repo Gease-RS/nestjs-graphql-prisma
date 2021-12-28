@@ -52,4 +52,7 @@ $ npm install --save-dev prisma-nestjs-graphql
 # Instale
 $ npm install --save class-validator class-transformer
 
+# Pacote para implementar assinaturas
+$ npm install graphql-subscriptions
+
 ```

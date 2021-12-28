@@ -1,6 +1,5 @@
-import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { getConstantValue } from '@ts-morph/common/lib/typescript';
+import { Injectable } from '@nestjs/common';
 import { OrderByParams } from 'src/graphql';
 import { PrismaService } from '../../prisma/prisma.service';
 
